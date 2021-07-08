@@ -96,6 +96,9 @@ func decodeXML(d *xml.Decoder, sk string, attr []xml.Attr) (map[string]interface
 			if len(ma) > 0 {
 				m[sk] = ma
 			}
+			if _, ok := m[sk]; !ok {
+				m[sk] = ""
+			}
 			return m, nil
 		case xml.CharData:
 			tt := strings.Trim(string(element), "\t\r\b\n ")
