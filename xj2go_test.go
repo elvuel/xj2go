@@ -3,6 +3,7 @@ package xj2go
 import (
 	"archive/zip"
 	"bytes"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"path"
@@ -26,7 +27,7 @@ func Test_xmlToPaths(t *testing.T) {
 	}
 
 	for k, v := range fs {
-		t.Run("xml to paths"+string(k), func(t *testing.T) {
+		t.Run("xml to paths"+fmt.Sprintf("%d", k), func(t *testing.T) {
 			_, err := xmlToLeafNodes(v)
 			if err != nil {
 				t.Errorf("xmlToMap() error = %v", err)
@@ -53,7 +54,7 @@ func Test_XMLToGo(t *testing.T) {
 
 	pkgname := "excel"
 	for k, v := range fs {
-		t.Run("xml to go "+string(k), func(t *testing.T) {
+		t.Run("xml to go "+fmt.Sprintf("%d", k), func(t *testing.T) {
 			xj := New(v, pkgname, "")
 			err := xj.XMLToGo()
 			if err != nil {
@@ -105,7 +106,7 @@ func TestXJ_JSONToGo(t *testing.T) {
 
 	pkgname := "xjson"
 	for k, v := range fs {
-		t.Run("json to go "+string(k), func(t *testing.T) {
+		t.Run("json to go "+fmt.Sprintf("%d", k), func(t *testing.T) {
 			root := strings.TrimSuffix(path.Base(v), path.Ext(v))
 			xj := New(v, pkgname, root)
 			err := xj.JSONToGo()
@@ -126,7 +127,7 @@ func Test_JSONBytesToGo(t *testing.T) {
 
 	pkgname := "xjson2"
 	for k, v := range fs {
-		t.Run("json bytes to go "+string(k), func(t *testing.T) {
+		t.Run("json bytes to go "+fmt.Sprintf("%d", k), func(t *testing.T) {
 			root := strings.TrimSuffix(path.Base(v), path.Ext(v))
 			b, err := ioutil.ReadFile(v)
 			if err != nil {
