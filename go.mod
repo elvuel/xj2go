@@ -1,5 +1,5 @@
-module github.com/wk30
+module github.com/wk30/xj2go
 
 go 1.13
 
-require github.com/wk30/xj2go v0.0.0-20181223045710-4042c1bc2ba9
+require golang.org/x/net v0.0.0-20210614182718-04defd469f4e
